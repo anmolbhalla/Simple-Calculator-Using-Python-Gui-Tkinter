@@ -1,0 +1,36 @@
+from tkinter import *
+class calc:
+	def action(self,argi):
+		"""pressed button's value is inserted into the end of the text area"""
+		self.e.insert(END,argi)
+	def __init__(self, master):
+		self.e = Entry(master)
+		self.e.grid(row=0, columnspan=20)
+		self.e.focus_set()
+
+		bt1=Button(master,text="=",width=8,command=abcd).grid(row=4, column=4,columnspan=2)
+		bt2=Button(master,text='AC',width=3).grid(row=1, column=4)
+		bt3=Button(master,text='C',width=3).grid(row=1, column=5)
+		bt4=Button(master,text="+",width=3,command=lambda:self.action('+')).grid(row=4, column=3)
+		bt5=Button(master,text="x",width=3).grid(row=2, column=3)
+		bt6=Button(master,text="-",width=3,).grid(row=3, column=3)
+		bt7=Button(master,text="÷",width=3).grid(row=1, column=3)
+		bt8=Button(master,text="%",width=3).grid(row=4, column=2)
+		bt9=Button(master,text="7",width=3).grid(row=1, column=0)
+		bt10=Button(master,text="8",width=3).grid(row=1, column=1)
+		bt11=Button(master,text="9",width=3).grid(row=1, column=2)
+		bt12=Button(master,text="4",width=3).grid(row=2, column=0)
+		bt13=Button(master,text="5",width=3).grid(row=2, column=1)
+		bt14=Button(master,text="6",width=3).grid(row=2, column=2)
+		bt15=Button(master,text="1",width=3).grid(row=3, column=0)
+		bt16=Button(master,text="2",width=3).grid(row=3, column=1)
+		bt17=Button(master,text="3",width=3).grid(row=3, column=2)
+		bt18=Button(master,text="0",width=3).grid(row=4, column=0)
+		bt19=Button(master,text=".",width=3).grid(row=4, column=1)
+		bt20=Button(master,text="(",width=3).grid(row=2, column=4)
+		bt21=Button(master,text=")",width=3).grid(row=2, column=5)
+		bt22=Button(master,text="√",width=3).grid(row=3, column=4)
+		bt23=Button(master,text="x²",width=3).grid(row=3, column=5)
+root=Tk()
+obj=calc(root)
+root.mainloop()
