@@ -1,13 +1,14 @@
 from tkinter import *
 import tkinter.messagebox
+import math
 class calc:
 	def solve(self):
-		aa=self.e.get()
+		self.aa=self.e.get()
 		try:
-			val=eval(aa)
+			val=eval(self.aa)
 			self.e.delete(0, END)
 			self.e.insert(0, val)
-		except SyntaxError:
+		except SyntaxError or NameError:
 			tkinter.messagebox.showerror('Result', 'Error')
 	def clearelement(self):
 		self.text=self.e.get()[:-1]
@@ -21,19 +22,39 @@ class calc:
 	def value(self):
 		aa=self.e.get()
 		print(aa)
+	def squareroot(self):
+		self.solve()
+		try:
+			self.sol=eval(self.aa)
+		except SyntaxError or NameError:
+			tkinter.messagebox.showerror('Result','Error')
+		else:
+			self.sq=math.sqrt(self.sol)
+			self.e.delete(0,END)
+			self.e.insert(0,self.sq)
+	def square(self):
+		self.solve()
+		try:
+			self.b=eval(self.aa)
+		except SyntaxError or NameError:
+			tkinter.messagebox.showerror('Result','Error')
+		else:
+			self.root=math.pow(self.b,2)
+			self.e.delete(0,END)
+			self.e.insert(0,self.root)
 	def __init__(self, master):
 		self.e = Entry(master)
 		self.e.grid(row=0, columnspan=20)
 		self.e.focus_set()
 
-		bt1=Button(master,text="=",width=8,command=lambda:self.solve()).grid(row=4, column=4,columnspan=2)
+		bt1=Button(master,text="=",width=12,command=lambda:self.solve()).grid(row=4, column=3,columnspan=4)
+		master.bind('<Return>',lambda x :self.solve())
 		bt2=Button(master,text='AC',width=3,command=lambda:self.clearfield()).grid(row=1, column=4)
 		bt3=Button(master,text='C',width=3,command=lambda:self.clearelement()).grid(row=1, column=5)
-		bt4=Button(master,text="+",width=3,command=lambda:self.action('+')).grid(row=4, column=3)
+		bt4=Button(master,text="+",width=3,command=lambda:self.action('+')).grid(row=4, column=2)
 		bt5=Button(master,text="x",width=3,command=lambda:self.action('*')).grid(row=2, column=3)
 		bt6=Button(master,text="-",width=3,command=lambda:self.action('-')).grid(row=3, column=3)
 		bt7=Button(master,text="÷",width=3,command=lambda:self.action('/')).grid(row=1, column=3)
-		bt8=Button(master,text="%",width=3).grid(row=4, column=2)
 		bt9=Button(master,text="7",width=3,command=lambda:self.action('7')).grid(row=1, column=0)
 		bt10=Button(master,text="8",width=3,command=lambda:self.action('8')).grid(row=1, column=1)
 		bt11=Button(master,text="9",width=3,command=lambda:self.action('9')).grid(row=1, column=2)
@@ -47,8 +68,8 @@ class calc:
 		bt19=Button(master,text=".",width=3,command=lambda:self.action('.')).grid(row=4, column=1)
 		bt20=Button(master,text="(",width=3,command=lambda:self.action('(')).grid(row=2, column=4)
 		bt21=Button(master,text=")",width=3,command=lambda:self.action(')')).grid(row=2, column=5)
-		bt22=Button(master,text="√",width=3).grid(row=3, column=4)
-		bt23=Button(master,text="x²",width=3).grid(row=3, column=5)
+		bt22=Button(master,text="√",width=3,command=lambda:self.squareroot()).grid(row=3, column=4)
+		bt23=Button(master,text="x²",width=3,command=lambda:self.square()).grid(row=3, column=5)
 root=Tk()
 obj=calc(root)
 root.mainloop()
